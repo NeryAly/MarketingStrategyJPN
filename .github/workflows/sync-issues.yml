@@ -13,11 +13,11 @@ jobs:
     - name: Sync issue to central repository
       uses: peter-evans/create-issue-from-file@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.CENTRAL_TOKEN }}  # Use the CENTRAL_TOKEN secret
         repository: neryguzman/central-dashboard
         title: ${{ github.event.issue.title }}
-        content-filepath: ""  # Remove invalid content field
-        labels: >
+        content-filepath: ""  # Optional, can be removed if not needed
+        labels: |
           company:NeryAly
           repository:MarketingStrategyJPN
           status:${{ github.event.issue.state }}
