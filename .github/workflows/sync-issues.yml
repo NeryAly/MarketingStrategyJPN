@@ -16,13 +16,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: neryguzman/central-dashboard
         title: ${{ github.event.issue.title }}
-        content: |
-          **Original Issue URL**: ${{ github.event.issue.html_url }}
-          **Repository**: {{ github.repository }}
-          **Milestone**: ${{ github.event.issue.milestone.title }}
-          **Assignee**: ${{ github.event.issue.assignee }}
-          **Description**: ${{ github.event.issue.body }}
-
+        content-filepath: ""  # Remove invalid content field
         labels: >
           company:NeryAly
           repository:MarketingStrategyJPN
