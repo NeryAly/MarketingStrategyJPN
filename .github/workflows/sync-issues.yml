@@ -1,0 +1,30 @@
+
+name: Sync Issues to Central Dashboard
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  sync_issues:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Sync issue to central repository
+      uses: peter-evans/create-issue-from-file@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: neryguzman/central-dashboard
+        title: ${{ github.event.issue.title }}
+        content: |
+          **Original Issue URL**: ${{ github.event.issue.html_url }}
+          **Repository**: {{ github.repository }}
+          **Milestone**: ${{ github.event.issue.milestone.title }}
+          **Assignee**: ${{ github.event.issue.assignee }}
+          **Description**: ${{ github.event.issue.body }}
+
+        labels: >
+          company:NeryAly
+          repository:MarketingStrategyJPN
+          status:${{ github.event.issue.state }}
+          assignee:${{ github.event.issue.assignee.login }}
